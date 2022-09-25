@@ -39,7 +39,19 @@ function colorBox(color) {
   });
 }
 
+function copiedAlert(color) {
+  const copiedColorContainer = document.querySelector("#copiedColorContainer");
+  const colorCodeText = document.querySelector("#colorCodeText");
+  copiedColorContainer.style.backgroundColor = `${color}`;
+  colorCodeText.innerText = `${color}`;
+  copiedColorContainer.style.visibility = "visible";
+  setTimeout(() => {
+    copiedColorContainer.style.visibility = "hidden";
+  }, 800);
+}
+
 function colorCopy(event) {
+  const colorCategoty = document.querySelector("#color-category");
   const color = event.target.style.backgroundColor;
   const rgbToHEx =
     "#" +
@@ -48,8 +60,17 @@ function colorCopy(event) {
       .split(",")
       .map((x) => (+x).toString(16).padStart(2, 0))
       .join("");
-  console.log(rgbToHEx);
-  copyToClipboard(rgbToHEx);
+  if (colorCategoty.options[colorCategoty.selectedIndex].value === "hex") {
+    copyToClipboard(rgbToHEx);
+    console.log(rgbToHEx);
+    copiedAlert(rgbToHEx);
+  } else if (
+    colorCategoty.options[colorCategoty.selectedIndex].value === "rgb"
+  ) {
+    copyToClipboard(color);
+    copiedAlert(color);
+    console.log(color);
+  }
 }
 
 function colorCopyBtn(div, color) {
