@@ -62,8 +62,8 @@ function colorCopy(event) {
       .join("");
   if (colorCategoty.options[colorCategoty.selectedIndex].value === "hex") {
     copyToClipboard(rgbToHEx);
-    console.log(rgbToHEx);
     copiedAlert(rgbToHEx);
+    console.log(rgbToHEx);
   } else if (
     colorCategoty.options[colorCategoty.selectedIndex].value === "rgb"
   ) {
